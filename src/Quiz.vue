@@ -17,7 +17,9 @@ const questions = [
 const page = ref(0);
 const correct = ref();
 const selected = ref('');
-const completed = ref(false)
+const completed = ref(false);
+const scores = ref(0);
+
 
 const reset = () => {
   selected.value = '';
@@ -32,6 +34,7 @@ const reset = () => {
 
 const handleSubmit = () => {
   if (selected.value === questions[page.value].answer) {
+    scores.value ++;
     correct.value = true
     reset();
   } else {
@@ -60,7 +63,7 @@ const handleSubmit = () => {
       </div>
     </div>
     <div v-else class="text-white font-bold" >
-      <p> Questions completed </p>
+      <p> Questions completed! You scored {{scores}}/{{questions.length}} </p>
     </div>
   </div>
 </template>
